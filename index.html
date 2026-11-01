@@ -1,0 +1,364 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Para Sandrita 💖</title>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500&family=Playfair+Display:ital,wght@0,500;1,400&display=swap" rel="stylesheet">
+<style>
+:root{--ac:#a8123a;--ink:#2b2433;--soft:#7a6f86}
+*{box-sizing:border-box;margin:0;padding:0}
+body{font-family:Inter,sans-serif;color:var(--ink);background:linear-gradient(180deg,#f7f3fc,#e9e0fa 60%,#f7f3fc)}
+body:not(.open){overflow:hidden;height:100vh}
+body:not(.open) main{visibility:hidden}
+h1,h2,h3,.serif{font-family:"Playfair Display",serif;font-weight:500}
+.eye{font-size:11px;letter-spacing:.25em;text-transform:uppercase;color:var(--soft);text-align:center}
+main{position:relative;z-index:2}
+section{max-width:520px;margin:0 auto;padding:56px 22px}
+.card{background:rgba(255,255,255,.78);border-radius:24px;padding:22px;box-shadow:0 8px 30px rgba(120,80,160,.12)}
+.rv{opacity:0;transform:translateY(24px);transition:.8s}
+.rv.in{opacity:1;transform:none}
+h2{text-align:center;font-size:26px;margin:8px 0 22px}
+
+/* fotos con su forma real (sin cortar) */
+.nat{border-radius:22px;overflow:hidden;background:#eadff5}
+.nat img{display:block;width:100%;height:auto}
+
+/* corazones de fondo */
+#hearts{position:fixed;inset:0;z-index:1;pointer-events:none;overflow:hidden}
+#hearts i{position:absolute;bottom:-40px;font-style:normal;color:var(--ac);opacity:0;animation:rise linear forwards}
+@keyframes rise{
+  0%{transform:translate(0,0) scale(.7);opacity:0}
+  15%{opacity:.5}
+  50%{opacity:.5}
+  100%{transform:translate(var(--dx),-110vh) scale(1.1);opacity:0}
+}
+
+/* puerta */
+#gate{position:fixed;inset:0;z-index:50;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:14px;text-align:center;padding:24px;background:transparent;transition:opacity 1s,visibility 1s}
+#gate.gone{opacity:0;visibility:hidden}
+#gate h1{font-size:40px}
+.heart{position:relative;width:150px;height:150px;border:none;background:none;cursor:pointer;font-size:150px;line-height:150px;-webkit-tap-highlight-color:transparent}
+.heart span{position:absolute;inset:0}
+.heart .base{color:#d6c8ec}
+.heart .fill{color:var(--ac);clip-path:inset(var(--empty,100%) 0 0 0);transition:clip-path .5s}
+.heart:active{transform:scale(.92)}
+#pct{font-size:22px;color:var(--ac);font-weight:500}
+#tapMsg{min-height:50px;font-style:italic;color:var(--soft);max-width:320px}
+.fly{position:fixed;pointer-events:none;font-size:22px;color:var(--ac);animation:fly 1.6s forwards;z-index:60}
+@keyframes fly{to{transform:translateY(-240px) scale(1.5);opacity:0}}
+
+/* portada */
+.hero{padding-top:36px}
+.hero .nat{border-radius:28px;box-shadow:0 14px 40px rgba(120,80,160,.25)}
+.hc{text-align:center;margin-top:24px}
+.hc small{letter-spacing:.2em;text-transform:uppercase;font-size:11px;color:var(--soft)}
+.hc h1{font-size:46px;margin:4px 0}
+.hc .num{font-family:"Playfair Display";font-size:48px;color:var(--ac);margin-top:16px}
+
+/* galeria */
+#gal{display:flex;gap:16px;overflow-x:auto;scroll-snap-type:x mandatory;padding:4px 22px 14px;margin:0 -22px;scrollbar-width:none;align-items:flex-start}
+#gal::-webkit-scrollbar{display:none}
+.slide{flex:0 0 auto;scroll-snap-align:center}
+.slide .w{width:min-content}
+.slide .nat img{width:auto;height:auto;max-width:80vw;max-height:440px}
+.slide p{width:0;min-width:100%;font-size:13px;color:var(--soft);text-align:center;padding:10px 4px 0;line-height:1.4}
+#cnt{text-align:center;font-size:13px;color:var(--soft)}
+
+/* carta */
+.letter p{font-family:"Playfair Display",serif;font-style:italic;line-height:1.75;margin-bottom:16px;font-size:17px}
+
+/* linea de tiempo */
+.tl{position:relative;padding-left:22px;border-left:2px solid #e5b9c6;margin-left:6px}
+.tl .it{position:relative;margin-bottom:24px}
+.tl .it::before{content:"";position:absolute;left:-30px;top:26px;width:12px;height:12px;border-radius:50%;background:var(--ac)}
+.tl .d{font-size:11px;letter-spacing:.12em;text-transform:uppercase;color:var(--ac)}
+.tl h3{font-size:21px;margin:2px 0 4px}
+.tl p{font-size:14px;color:var(--soft);line-height:1.55}
+.mi{display:grid;gap:8px;margin:12px 0}
+.mi.two{grid-template-columns:1fr 1fr;align-items:start}
+.mi .nat{border-radius:16px}
+
+/* un dia gris entre todos los dias */
+#spImg{border-radius:18px}
+#spImg img{filter:blur(9px) saturate(.5);transition:filter 3.5s}
+#spImg.clear img{filter:none}
+#grid{display:grid;grid-template-columns:repeat(auto-fill,7px);gap:3px;justify-content:center;margin:18px 0 8px}
+.dot{width:7px;height:7px;border-radius:50%;background:#e4dcf0;transition:background .4s}
+.dot.on{background:var(--ac)}
+.dot.bad.on{background:#7d7d89}
+.dot.bad{animation:pl 1.6s infinite}
+@keyframes pl{50%{transform:scale(1.9)}}
+.ln{opacity:0;transform:translateY(10px);transition:.9s;font-family:"Playfair Display",serif;font-style:italic;font-size:18px;margin-top:12px}
+.ln.show{opacity:1;transform:none}
+.ln.big{color:var(--ac);font-size:21px}
+
+/* final */
+.fin .nat{box-shadow:0 14px 40px rgba(120,80,160,.25)}
+.btn{display:block;width:100%;border:none;border-radius:40px;padding:15px;background:var(--ac);color:#fff;font:500 16px Inter;cursor:pointer;margin-top:14px}
+.btn.ghost{background:#fff;color:var(--ink)}
+
+/* modal */
+#modal{position:fixed;inset:0;z-index:70;background:rgba(40,20,60,.55);display:none;align-items:center;justify-content:center;padding:22px}
+#modal.show{display:flex}
+#box{background:#fbf9ff;border-radius:26px;padding:26px;max-width:380px;width:100%;text-align:center}
+#box h3{font-size:22px;margin-bottom:6px}
+#box p{color:var(--soft);font-size:14px;margin-bottom:8px}
+.opt{display:block;width:100%;text-align:left;border:1px solid #e0d6ef;background:#fff;border-radius:16px;padding:14px 16px;margin-top:10px;font:500 15px Inter;cursor:pointer}
+.opt:active{background:#f3e8ee}
+#box input{width:100%;border:1px solid #e0d6ef;border-radius:14px;padding:13px;font:15px Inter;margin-top:12px}
+.coupon{border:2px dashed #cdb7d6;border-radius:20px;padding:24px 16px;margin:14px 0}
+.coupon .big{font-family:"Playfair Display";font-size:22px;margin:8px 0}
+</style>
+</head>
+<body>
+
+<div id="hearts"></div>
+
+<div id="gate">
+  <div class="eye">Tienes un regalo</div>
+  <h1 id="herName"></h1>
+  <p class="serif" style="font-style:italic;color:var(--soft);max-width:300px">“Lo hice con todo mi cariño, solo para ti.”</p>
+  <button class="heart" id="heart" aria-label="tocar corazón"><span class="base">♥</span><span class="fill">♥</span></button>
+  <div id="pct">0%</div>
+  <div id="tapMsg">Toca el corazón para descubrir tu regalo</div>
+</div>
+
+<main>
+  <section class="hero">
+    <div class="nat"><img id="heroImg" alt=""></div>
+    <div class="hc">
+      <small>Para</small>
+      <h1 id="herName2"></h1>
+      <div id="fromLine" class="serif" style="font-style:italic;color:var(--soft)"></div>
+      <div class="num" id="dias">0</div>
+      <small>días juntos</small>
+    </div>
+  </section>
+
+  <section class="rv">
+    <div class="eye">Nuestra canción</div>
+    <h2 id="songTitle"></h2>
+    <div id="spot"></div>
+  </section>
+
+  <section class="rv">
+    <div class="eye">Galería</div>
+    <h2>Momentos que no se borran</h2>
+    <div id="gal"></div>
+    <div id="cnt"></div>
+  </section>
+
+  <section class="rv">
+    <div class="eye">Carta</div>
+    <h2>Para ti</h2>
+    <div class="card letter">
+      <p>Hola, mi amor.</p>
+      <p>Te escribo esto con calma, porque hay cosas que me salen mejor por escrito que en medio del apuro.</p>
+      <p>Antes que nada, quiero que sepas que te quiero muchísimo. Más que cualquier día difícil y más que cualquier cansancio. Lo digo de verdad.</p>
+      <p>Siento no haber puesto más de mi parte para que todo se aclarara más rápido. Me hubiera gustado estar más atento, preguntarte y planear contigo en vez de dejar las cosas para último momento. Me quedo con esa lección y quiero hacerlo mejor: darle tiempo a lo que planeemos y contar contigo desde el principio.</p>
+      <p>Desde diciembre de 2022 has hecho mis días más bonitos. Hemos tenido viajes, cenas, risas y un montón de recuerdos que quiero seguir juntando contigo.</p>
+      <p>Gracias por tu paciencia, por quedarte y por seguir queriéndome incluso cuando no soy mi mejor versión. Lo valoro más de lo que a veces sé decir.</p>
+      <p>Te quiero mucho, Sandrita. Gracias por ser mi persona favorita.</p>
+      <p style="text-align:right">— Gabriel</p>
+    </div>
+  </section>
+
+  <section class="rv">
+    <div class="eye">Recuerdos</div>
+    <h2>Nuestra línea del tiempo</h2>
+    <div class="tl" id="tl"></div>
+  </section>
+
+  <section class="rv" id="cal">
+    <div class="eye">Una perspectiva</div>
+    <h2>Un día gris entre todos nuestros días</h2>
+    <div class="card" style="text-align:center">
+      <div class="nat" id="spImg"><img alt=""></div>
+      <div id="grid"></div>
+      <p class="ln">Un día difícil.</p>
+      <p class="ln">Entre <b id="nDays"></b> días juntos.</p>
+      <p class="ln">Todos los demás, contigo.</p>
+      <p class="ln big">Y lo mejor todavía no lo hemos vivido 💖</p>
+    </div>
+  </section>
+
+  <section class="rv fin">
+    <div class="nat"><img id="finImg" alt=""></div>
+    <div style="text-align:center;margin-top:18px">
+      <h2 style="margin:0" id="pair"></h2>
+      <div class="serif" style="font-style:italic;color:var(--soft)">Con todo mi cariño</div>
+    </div>
+    <div class="card" style="margin-top:26px;text-align:center">
+      <div style="font-size:30px">❤️</div>
+      <h3 style="font-size:22px;margin:6px 0">UNA ÚLTIMA SORPRESA</h3>
+      <p style="color:var(--soft);font-size:14px">Pensabas que el regalo había terminado...<br><em>pero todavía tengo algo preparado para ti.</em></p>
+      <button class="btn" id="surp">Descubrir la sorpresa ❤️</button>
+    </div>
+  </section>
+</main>
+
+<div id="modal"><div id="box"></div></div>
+
+<script>
+/* ===== CAMBIA SOLO ESTO ===== */
+const CONFIG={
+  her:"Sandra", nick:"Sandrita", him:"Gabriel",
+  start:"2022-12-06", badDate:"2026-10-31",
+  songTitle:"No me importa que usted sea mayor que yo",
+  songId:"0yy6SegPRLQU03ftqy8w6L",            // ID de Spotify
+  web3formsKey:"707b7088-9e13-40cb-865a-e213398dd350",      // clave de Web3Forms
+  mainImg:"imagen_principal",
+  specialImg:"imagen_011",   // la foto del "día gris" (cámbiala si quieres otra)
+  finalImg:"imagen_2026_ano_nuevo_02",
+  photos:[
+    {b:"imagen_01",cap:"A 1 km de la Laguna 69... casi, casi. Pero contigo hasta el camino valió la pena 🏔️"},
+    {b:"imagen_02",cap:"Pancito rumbo a Huaraz: el mejor desayuno es el que se comparte contigo 🥖"},
+    {b:"imagen_03",cap:"¡Huancaya! Cascadas, aire fresco y tú a mi lado 💧"},
+    {b:"imagen_04",cap:"Tienes una niña hermosa en tu interior, y yo la adoro ✨"},
+    {b:"imagen_05",cap:"Rumbo a Máncora: la aventura empezaba en la pista ✈️"},
+    {b:"imagen_06",cap:"Una rica cena en el Museo Larco, de esas noches que se guardan 🕯️"},
+    {b:"imagen_07",cap:"Quizás no sean las cenas más abundantes, pero contigo siempre son las más ricas 🍣"},
+    {b:"imagen_08",cap:"Concierto de bajo presupuesto en Plaza Norte, pero con todo el presupuesto de cariño 🎶"},
+    {b:"imagen_09",cap:"Vimos las dos películas del momento, y tú posando como toda una estrella 🎬"},
+    {b:"imagen_10",cap:"Eres tan hermosa como estas flores, y contigo todo florece 🌼"}
+  ],
+  moments:[
+    {d:"2023",t:"Máncora",x:"Valoro muchísimo los momentos bellos que vivimos allá. Como en todo viaje no todo fue perfecto, pero lo bonito pesó mucho más.",bs:["imagen_viaje_2023"]},
+    {d:"2024",t:"Una noche de teatro",x:"Hasta nuestra ropa combinó. Un plan distinto y perfecto contigo.",bs:["imagen_2024"]},
+    {d:"2025",t:"¡Nos casamos! 💍",x:"De mentirita, pero con toda la ilusión. Me encantó vernos así.",bs:["imagen_2025"]},
+    {d:"1 de enero de 2026",t:"Feliz año nuevo 2026",x:"No es el primero que pasamos juntos, pero sí uno que guardo con mucho cariño. Que vengan muchos más.",bs:["imagen_2026_ano_nuevo","imagen_2026_ano_nuevo_02"]},
+    {d:"2026",t:"Una escapadita a Huancaya",x:"Aire puro, paisajes y tú. Mi plan favorito: desconectar contigo.",bs:["imagen_viaje_2026"]}
+  ]
+};
+/* ============================ */
+
+const $=s=>document.querySelector(s);
+
+/* imagenes: prueba varias extensiones */
+const EXTS=['jpg','jpeg','png','webp','JPG','JPEG','PNG'];
+function tryNext(img){const i=+img.dataset.i;if(i<EXTS.length){img.dataset.i=i+1;img.src=img.dataset.base+'.'+EXTS[i]}else img.style.display='none'}
+const imgTag=b=>'<img data-base="'+b+'" data-i="1" alt="" src="'+b+'.jpg" onerror="tryNext(this)" onload="upd()">';
+function setImg(el,b){el.dataset.base=b;el.dataset.i=1;el.onerror=function(){tryNext(this)};el.src=b+'.jpg'}
+
+$('#herName').textContent=CONFIG.nick;
+$('#herName2').textContent=CONFIG.her;
+$('#pair').textContent=CONFIG.her+" y "+CONFIG.him;
+$('#fromLine').textContent="De "+CONFIG.him;
+$('#songTitle').textContent=CONFIG.songTitle;
+setImg($('#heroImg'),CONFIG.mainImg);
+setImg($('#spImg img'),CONFIG.specialImg);
+setImg($('#finImg'),CONFIG.finalImg);
+if(CONFIG.songId){
+  $('#spot').innerHTML='<iframe style="border-radius:16px;border:0" src="https://open.spotify.com/embed/track/'+CONFIG.songId+'" width="100%" height="152" allow="encrypted-media" loading="lazy"></iframe>';
+}
+$('#gal').innerHTML=CONFIG.photos.map(p=>'<div class="slide"><div class="w"><div class="nat">'+imgTag(p.b)+'</div>'+(p.cap?'<p>'+p.cap+'</p>':'')+'</div></div>').join('');
+$('#tl').innerHTML=CONFIG.moments.map(m=>'<div class="it card"><div class="d">'+m.d+'</div><h3>'+m.t+'</h3><div class="mi'+(m.bs.length>1?' two':'')+'">'+m.bs.map(b=>'<div class="nat">'+imgTag(b)+'</div>').join('')+'</div><p>'+m.x+'</p></div>').join('');
+
+const gal=$('#gal'),cnt=$('#cnt');
+function upd(){
+  const c=gal.getBoundingClientRect(),mid=c.left+c.width/2;let best=0,bd=1e9;
+  [...gal.children].forEach((s,i)=>{const r=s.getBoundingClientRect(),d=Math.abs(r.left+r.width/2-mid);if(d<bd){bd=d;best=i}});
+  cnt.textContent=(best+1)+" / "+gal.children.length;
+}
+gal.addEventListener('scroll',upd);window.addEventListener('load',upd);upd();
+
+/* corazones de fondo */
+const hl=$('#hearts');
+function spawnHeart(){
+  const h=document.createElement('i');
+  h.textContent='♥';
+  h.style.left=Math.random()*100+'vw';
+  h.style.fontSize=(12+Math.random()*22)+'px';
+  h.style.setProperty('--dx',(Math.random()*80-40)+'px');
+  const d=7+Math.random()*6;
+  h.style.animationDuration=d+'s';
+  hl.appendChild(h);
+  setTimeout(()=>h.remove(),d*1000);
+}
+setInterval(spawnHeart,450);
+
+/* bateria de corazon */
+const msgs=["Cada toque abre un pedacito del recuerdo...","Sigue, sigue 💕","Ya casi hay carga...","Un poquito más ❤️","Vas por la mitad...","Esto lo hice pensando en ti","Falta poco, amor","Ya casi, ya casi...","Un toque más...","¡Listo! 💖"];
+let pct=0;
+$('#heart').onclick=()=>{
+  if(pct>=100)return;
+  pct+=10;
+  $('#heart').style.setProperty('--empty',(100-pct)+'%');
+  $('#pct').textContent=pct+'%';
+  $('#tapMsg').textContent=msgs[pct/10-1];
+  const r=$('#heart').getBoundingClientRect(),f=document.createElement('span');
+  f.className='fly';f.textContent='♥';
+  f.style.left=(r.left+r.width/2+(Math.random()*80-40))+'px';f.style.top=(r.top+40)+'px';
+  document.body.appendChild(f);setTimeout(()=>f.remove(),1600);
+  if(pct>=100)setTimeout(openGift,1000);
+};
+const TOTAL=Math.max(2,Math.floor((Date.now()-new Date(CONFIG.start+"T00:00:00"))/86400000));
+function openGift(){
+  $('#gate').classList.add('gone');document.body.classList.add('open');window.scrollTo(0,0);
+  let n=0;const step=Math.max(1,Math.ceil(TOTAL/80));
+  const t=setInterval(()=>{n=Math.min(TOTAL,n+step);$('#dias').textContent=n;if(n>=TOTAL)clearInterval(t)},20);
+  setTimeout(upd,300);
+}
+const io=new IntersectionObserver(es=>es.forEach(e=>{if(e.isIntersecting)e.target.classList.add('in')}),{threshold:.15});
+document.querySelectorAll('.rv').forEach(el=>io.observe(el));
+
+/* un dia gris entre todos los dias */
+(function(){
+  let bad=Math.floor((new Date(CONFIG.badDate+"T00:00:00")-new Date(CONFIG.start+"T00:00:00"))/86400000);
+  bad=Math.min(Math.max(bad,0),TOTAL-1);
+  const g=$('#grid');let html='';
+  for(let i=0;i<TOTAL;i++)html+='<b class="dot'+(i===bad?' bad':'')+'"></b>';
+  g.innerHTML=html;
+  $('#nDays').textContent=TOTAL.toLocaleString('es');
+  const dots=[...g.children];let k=0;
+  function finish(){
+    $('#spImg').classList.add('clear');
+    document.querySelectorAll('#cal .ln').forEach((el,i)=>setTimeout(()=>el.classList.add('show'),i*1400));
+  }
+  function lit(){
+    const n=Math.ceil(TOTAL/80);
+    for(let j=0;j<n&&k<TOTAL;j++,k++)dots[k].classList.add('on');
+    if(k<TOTAL)setTimeout(lit,40);else finish();
+  }
+  let started=false;
+  new IntersectionObserver((es,ob)=>{es.forEach(e=>{if(e.isIntersecting&&!started){started=true;ob.disconnect();lit()}})},{threshold:.35}).observe($('#cal'));
+})();
+
+/* sorpresa final */
+const modal=$('#modal'),box=$('#box');let chosen=false;
+async function notify(choice){
+  if(!CONFIG.web3formsKey)return;
+  try{await fetch("https://api.web3forms.com/submit",{method:"POST",headers:{"Content-Type":"application/json",Accept:"application/json"},
+    body:JSON.stringify({access_key:CONFIG.web3formsKey,subject:"🎁 "+CONFIG.her+" eligió su premio",message:CONFIG.her+" eligió: "+choice})})}catch(e){}
+}
+function showCoupon(txt,emoji){
+  chosen=true;
+  box.innerHTML='<div class="coupon"><div style="font-size:12px;letter-spacing:.2em;color:var(--ac)">VALE ESPECIAL</div><div class="big">'+emoji+' Vale por '+txt+'</div><div style="font-size:12px;letter-spacing:.2em;color:var(--soft)">— '+CONFIG.him.toUpperCase()+'</div></div><p>¡Ganaste! Tu Premio te llegará esta noche para tu cenita 😘</p><button class="btn ghost" onclick="modal.classList.remove(\'show\')">Cerrar</button>';
+}
+function showOther(){
+  box.innerHTML='<h3>Cuéntame qué se te antoja</h3><p>Escríbelo aquí:</p><input id="otro" placeholder="Lo que quieras..."><button class="btn" id="sendOther">Enviar</button>';
+  $('#sendOther').onclick=async()=>{
+    const v=$('#otro').value.trim();if(!v)return;
+    chosen=true;await notify("Otro: "+v);
+    box.innerHTML='<h3>¡Gracias por tu respuesta! 💖</h3><p>Estamos generando tu cupón de premio. Aguarda un momento, te llegará por WhatsApp.</p><button class="btn ghost" onclick="modal.classList.remove(\'show\')">Cerrar</button>';
+  };
+}
+function pick(label,txt,emoji){showCoupon(txt,emoji);notify(label)}
+$('#surp').onclick=()=>{
+  modal.classList.add('show');
+  if(chosen)return;
+  box.innerHTML='<h3>¿Qué se te antoja?</h3><p>Elige con el corazón:</p>'+
+   '<button class="opt" id="o1">🍗 Pollito a la brasa (parte pierna)</button>'+
+   '<button class="opt" id="o2">🍕 Pizzita</button>'+
+   '<button class="opt" id="o3">🍰 Postre</button>'+
+   '<button class="opt" id="o4">✍️ Otro (escríbelo)</button>';
+  $('#o1').onclick=()=>pick("Pollito a la brasa (parte pierna)","un pollito a la brasa (parte pierna)","🍗");
+  $('#o2').onclick=()=>pick("Pizzita","una pizzita","🍕");
+  $('#o3').onclick=()=>pick("Postre","un postre a tu elección","🍰");
+  $('#o4').onclick=showOther;
+};
+modal.onclick=e=>{if(e.target===modal)modal.classList.remove('show')};
+</script>
+</body>
+</html>
